@@ -1,0 +1,50 @@
+<h1>Items Array</h1>
+<button (click)="doIncreaseItem()">Add</button>
+<button (click)="doRemoveItems()" [disabled]="checkedItems.length <= 0">
+  Remove
+</button>
+<button (click)="doRemoveItemsAll()" [disabled]="items.length <= 0">
+  Remove All
+</button>
+
+{{ checkedItems | json }}
+<p *ngFor="let item of items; let i = index">
+  <input
+    type="checkbox"
+    [id]="i"
+    [value]="item.CheckedId"
+    (click)="doAddChecked($event, i)"
+  />
+  index is {{ i }} ===> item Name {{ item.Name }} ===> item checked id ===>
+  {{ item.CheckedId }}
+</p>
+
+<hr />
+
+<h1>Form Array</h1>
+<button (click)="doIncreaseFormArray()">Add</button>
+<button (click)="doRemoveFormArray()" [disabled]="checkedFormArray.length <= 0">
+  Remove by checked
+</button>
+<button (click)="removeAllFomArray()" [disabled]="formArray.length <= 0">
+  Remove all
+</button>
+{{ checkedFormArray | json }}
+
+<form [formGroup]="myForm">
+  <div formArrayName="entitiesForm">
+    <div
+      *ngFor="let form of formArray.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <input
+        type="checkbox"
+        [id]="i"
+        [value]="form.get('CheckedId').value"
+        (click)="doAddCheckedFormArray($event, i)"
+      />
+      <input formControlName="Name" placeholder="Name..." />
+      {{ form.get("CheckedId").value }}
+    </div>
+  </div>
+</form>
