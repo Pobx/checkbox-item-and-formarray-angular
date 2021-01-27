@@ -1,5 +1,5 @@
 <h1>Items Array</h1>
-<button (click)="doIncreaseItem()">Add</button>
+<button (click)="doIncreaseItem()"></button>
 <button (click)="addFiveItem()">addFiveItem</button>
 <button (click)="doRemoveItems()" [disabled]="checkedItems.length <= 0">
   Remove
@@ -9,6 +9,16 @@
 </button>
 
 {{ checkedItems | json }}
+<!-- <p *ngFor="let item of items; let i = index">
+  <input
+    type="checkbox"
+    [id]="i"
+    [value]="item.CheckedId"
+    (click)="doAddChecked($event, i)"
+  />
+  index is {{ i }} ===> item Name {{ item.Name }} ===> item checked id ===>
+  {{ item.CheckedId }}
+</p> -->
 
 <table>
   <thead>
@@ -19,7 +29,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let item of items; let i = index; trackBy: trackByCheckedId">
+    <tr *ngFor="let item of items; let i = index">
       <td>
         <input
           type="checkbox"

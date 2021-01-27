@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
 
   doRemoveFormArray(): void {
     const items: Item[] = this.formArray.getRawValue();
-    console.log(items);
+
     this.checkedFormArray.forEach((value) => {
       const index = this.formArray.controls
         .map((data) => data.get(`CheckedId`).value)
@@ -128,5 +128,6 @@ export class AppComponent implements OnInit {
     }
 
     this.checkedFormArray = [];
+    this.checkedNumberFormArray = 0;
   }
 }
