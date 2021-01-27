@@ -34,6 +34,21 @@ export class AppComponent implements OnInit {
     return this.myForm.get(`entitiesForm`) as FormArray;
   }
 
+  trackByCheckedId(index: number, item: Item): number {
+    console.log(item);
+    return item.CheckedId;
+  }
+
+  addFiveItem(): void {
+    this.items = [
+      { Name: new Date().toString(), CheckedId: 0 },
+      { Name: new Date().toString(), CheckedId: 1 },
+      { Name: new Date().toString(), CheckedId: 2 },
+      { Name: new Date().toString(), CheckedId: 3 },
+      { Name: new Date().toString(), CheckedId: 4 },
+    ];
+  }
+
   doIncreaseItem(): void {
     this.items.push({
       Name: new Date().toString(),
@@ -66,6 +81,7 @@ export class AppComponent implements OnInit {
   doRemoveItemsAll(): void {
     this.items = [];
     this.checkedItems = [];
+    this.checkedNumber = 0;
   }
 
   doIncreaseFormArray(): void {
