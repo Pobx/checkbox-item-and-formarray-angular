@@ -18,8 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  // tslint:disable-next-line: typedef
-  ngOnInit() {
+  ngOnInit(): void {
     this.items = [];
     this.checkedItems = [];
     this.checkedNumber = 0;
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit {
     return this.myForm.get(`entitiesForm`) as FormArray;
   }
 
-  doIncreaseItem() {
+  doIncreaseItem(): void {
     this.items.push({
       Name: new Date().toString(),
       CheckedId: this.checkedNumber,
@@ -43,7 +42,7 @@ export class AppComponent implements OnInit {
     this.checkedNumber++;
   }
 
-  doAddChecked(event, index: number) {
+  doAddChecked(event, index: number): void {
     const isChecked = event.target.checked;
     const data: Item = this.items[index];
     if (isChecked) {
@@ -55,7 +54,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doRemoveItems() {
+  doRemoveItems(): void {
     this.checkedItems.forEach((value) => {
       const index = this.items.map((data) => data.CheckedId).indexOf(value);
       this.items.splice(index, 1);
@@ -64,12 +63,12 @@ export class AppComponent implements OnInit {
     this.checkedItems = [];
   }
 
-  doRemoveItemsAll() {
+  doRemoveItemsAll(): void {
     this.items = [];
     this.checkedItems = [];
   }
 
-  doIncreaseFormArray() {
+  doIncreaseFormArray(): void {
     const Entity = this.fb.group({
       Name: new Date().toString(),
       CheckedId: this.checkedNumberFormArray,
@@ -79,7 +78,7 @@ export class AppComponent implements OnInit {
     this.checkedNumberFormArray++;
   }
 
-  doAddCheckedFormArray(event, index: number) {
+  doAddCheckedFormArray(event, index: number): void {
     const isChecked = event.target.checked;
     const formGroup = this.formArray.at(index) as FormGroup;
 
@@ -94,7 +93,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doRemoveFormArray() {
+  doRemoveFormArray(): void {
     const items: Item[] = this.formArray.getRawValue();
     console.log(items);
     this.checkedFormArray.forEach((value) => {
@@ -107,7 +106,7 @@ export class AppComponent implements OnInit {
     this.checkedFormArray = [];
   }
 
-  removeAllFomArray() {
+  removeAllFomArray(): void {
     while (this.formArray.length) {
       this.formArray.removeAt(0);
     }
